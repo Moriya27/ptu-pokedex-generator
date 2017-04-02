@@ -1,0 +1,103 @@
+\documentclass{article}
+
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+ 
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{lipsum}
+\usepackage{multicol}
+\usepackage[letterpaper, left=0.7in, right=0.7in, top=0.5in, bottom=0.5in]{geometry}
+
+\usepackage{catchfilebetweentags}
+\usepackage{xltxtra}
+\usepackage[percent]{overpic}
+\setmainfont{Minion Pro}
+
+\fancyhf{} % clear all header and footers
+\renewcommand{\headrulewidth}{0pt} % remove the header rule
+\pagestyle{fancy}
+
+%comment in to for a test build
+%\def\jobname{"001"}
+
+\newcommand{\imp}[1]{\ExecuteMetaData[../out/\jobname.out] {#1}}
+
+\newbox\one
+\newbox\two
+\long\def\loremlines#1{%
+    \setbox\one=\vbox {%
+       Test.\footnote{a footnote}%
+      \lipsum\footnote{Another footnote.}%
+     }
+   \setbox\two=\vsplit\one to #1\baselineskip
+   \unvbox\two}
+
+\begin{document}
+\begin{multicols}{2}
+\noindent\textbf{\imp{name}} 
+
+\noindent\begin{overpic}[width=0.9\linewidth]{../images/background.png}
+ \put (0,0) {\includegraphics[width=0.9\linewidth]{../images/\jobname.png}}
+\end{overpic}
+
+%\noindent\includegraphics[width=0.9\linewidth]{image.png}
+
+\begin{center}Base Stats\end{center}
+\begin{tabular}{@{} l l }
+HP: & \imp{hp}\\
+Attack: & \imp{atk}\\
+Defense: & \imp{def}\\
+Special Attack: & \imp{spa}\\
+Special Defense: & \imp{spd}\\
+Speed: & \imp{spe}\\
+\end{tabular}
+\begin{center}Basic Information\end{center}
+Type: \imp{types}\\
+\imp{abi1}\\
+\imp{abi2}\\
+\imp{abi3}\\
+\imp{abi4}\\
+\imp{abi5}\\
+
+\noindent Evolution:\\
+\imp{evolutions}
+\\
+\begin{center}Size Information\end{center}
+Height : \imp{height}\\
+Weight : \imp{weight}
+\\
+\begin{center}Breeding Information\end{center}
+Gender Ratio : \imp{gender}\\
+Egg Group : \imp{eggGroups}\\
+Average Hatch Rate : \imp{eggHatch} days
+\\\\
+\noindent Diet : \imp{diet}\\
+Habitat : \imp{habitat}
+\vfill\null
+\columnbreak
+\hspace*{\fill}Capability List\hspace*{\fill}\\
+\imp{capabilities}\\
+
+\hspace*{\fill}Skill List\hspace*{\fill}\\
+Athl \imp{athl}, Acro \imp{acro}, Combat \imp{combat}, Stealth \imp{stealth}, Percep \imp{percep}, Focus \imp{focus}\\
+
+\hspace*{\fill}Move List\hspace*{\fill}\\
+Level Up Move List\\
+\imp{levelUp}
+
+\imp{tms}
+
+\imp{eggMoves}
+
+\imp{tutor}
+
+%the if/else for this is bullshit and isn't working
+%copy-paste this in the script and get a little sad
+%  \noindent Tutor Move List\\
+%\indent\indent \imp{tutor}
+%\\\\
+
+\end{multicols}
+\end{document}
