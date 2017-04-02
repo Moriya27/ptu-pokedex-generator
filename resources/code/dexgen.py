@@ -25,7 +25,7 @@ def create_pdfs(number_group):
     
     
 
-#create_pdfs(numbers)
+create_pdfs(numbers)
 print("pdf gen done")
 for number in numbers:
     try:
