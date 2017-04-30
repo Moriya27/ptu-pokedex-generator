@@ -42,7 +42,7 @@ for item in dex:
 		arr.append(dex[item]["Species"])
 		string = string + "\n"+r"\phantomsection" + "\n" + r"\addcontentsline{toc}{section}{"+dex[item]["Species"]+"}"
 		
-	string = string + "\n" + r"\includepdf[pages="+str(i)+r",linktodoc,linktodocfit=/Fit,pagecommand={\thispagestyle{fancy}}]{basic_dex.pdf}"+"\n"+r"\newpage"
+	string = string + "\n" + r"\includepdf[pages="+str(i)+r",pagecommand={\thispagestyle{fancy}}]{basic_dex.pdf}"+"\n"+r"\newpage"
 	i = i + 1
 
 string = string + "\n" + "\end{document}"
